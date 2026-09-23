@@ -1,0 +1,35 @@
+[
+  {
+    "name": "hot_posts_limit_adherence",
+    "input": "List exactly the 2 hottest posts in r/LocalLLaMA right now",
+    "expected_tools": ["get_hot_posts"],
+    "expected_in_output": [],
+    "max_list_items": 2
+  },
+  {
+    "name": "nonexistent_subreddit",
+    "input": "What are the top posts in r/this-subreddit-does-not-exist-12345?",
+    "expected_tools": ["get_hot_posts"],
+    "expected_in_output": ["error"],
+    "expect_error": true
+  },
+  {
+    "name": "search_selects_search_tool",
+    "input": "Search r/LocalLLaMA for posts about llama 3 quantization",
+    "expected_tools": ["search_posts"],
+    "expected_in_output": []
+  },
+  {
+    "name": "compound_request_uses_tool",
+    "input": "What is the #1 hot post in r/LocalLLaMA and how many comments does it have?",
+    "expected_tools": ["get_hot_posts"],
+    "expected_in_output": []
+  },
+  {
+    "name": "empty_search_no_hallucination",
+    "input": "Search r/LocalLLaMA for posts matching zqxwve987654321llamafarm",
+    "expected_tools": ["search_posts"],
+    "expected_in_output": ["no posts"],
+    "forbidden_in_output": ["found 1 post", "here is a post", "the post is"]
+  }
+]

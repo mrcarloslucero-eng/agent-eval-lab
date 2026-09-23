@@ -1,0 +1,33 @@
+[
+  {
+    "name": "list_commits_langchain",
+    "input": "What were the last 3 commits to the langchain-ai/langchain repo?",
+    "expected_tools": ["get_commits"],
+    "expected_in_output": ["by", "commit"]
+  },
+  {
+    "name": "list_bugs_react",
+    "input": "Are there any open bugs in facebook/react?",
+    "expected_tools": ["get_issues"],
+    "expected_in_output": ["#", "by"]
+  },
+  {
+    "name": "commits_and_issues",
+    "input": "Show me recent commits and any bug issues for torvalds/linux",
+    "expected_tools": ["get_commits", "get_issues"],
+    "expected_in_output": ["by", "#"]
+  },
+  {
+    "name": "nonexistent_repo",
+    "input": "What are the commits to this-is-fake-repo-12345/nowhere?",
+    "expected_tools": ["get_commits"],
+    "expected_in_output": ["Error", "404"],
+    "expect_error": true
+  },
+  {
+    "name": "repo_with_no_bugs",
+    "input": "Find bug issues in octocat/Hello-World",
+    "expected_tools": ["get_issues"],
+    "expected_in_output": ["No open issues", "found"]
+  }
+]
